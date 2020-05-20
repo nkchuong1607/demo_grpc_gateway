@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package demo;
+
+option go_package="github.com/nkchuong1607/demo_grpc_gateway/demopb";
+
+import "google/api/annotations.proto";
+
+message StringMessage {
+    string msg = 1;
+}
+
+service DemoGateway {
+    rpc Echo(StringMessage) returns (StringMessage){
+        option (google.api.http) = {
+            post: "/demo/echo"
+            body: "*"
+        };
+    }
+}
